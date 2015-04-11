@@ -4,11 +4,26 @@
     <meta charset="utf-8">
     <title>Forum Post Formatter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
+	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
     	
 	  <script type = "text/javascript">
+
+		function mod_selection (val1,val2) {
+			// Get the text area
+			var textArea = document.getElementById('my_text');
+					 
+			// Do we even have a selection?
+			if (typeof(textArea.selectionstart) != "undefined") {
+				// Split the text in three pieces - the selection, and what comes before and after.
+				var begin = textArea.value.substr(0, textArea.selectionstart);
+				var selection = textArea.value.substr(textArea.selectionstart, textArea.selectionend - textArea.selectionstart);
+				var end = textArea.value.substr(textArea.selectionend);
+				 
+				// Insert the tags between the three pieces of text.
+				textArea.value = begin + val1 + selection + val2 + end;
+			}
+		}
+	  
 		function outputClear(){
 			var textOutput = document.getElementById("textOutput");
 			textOutput.value = ""
@@ -92,7 +107,64 @@
 					var newLine = "    " + lines[line]; //Get the new line and add four spaces infront of it
 					newCode = newCode + newLine + "\r\n"; //Add it to buffer
 				}
-				outputText = outputText + newCode; // Add to output text
+				outputText = outputText + newCode + ("\n\n"); // Add to output text
+			}
+			
+			textOutput.value = outputText;
+		}
+		
+		// ADDING RATHER THAN REPLACING.
+		
+		function addOutput(){
+			var inputTitle = document.getElementById("inputTitle");
+			var inputTask = document.getElementById("inputTask");
+			var inputName = document.getElementById("inputName");
+			var textArea = document.getElementById("textArea");
+			var inputImage = document.getElementById("inputImage");
+			var inputImage2 = document.getElementById("inputImage2");
+			var inputCode = document.getElementById("inputCode");
+
+			var textOutput = document.getElementById("textOutput");
+
+			var title = inputTitle.value;
+			var task = inputTask.value;
+			var name = inputName.value;
+			var text = textArea.value;
+			var image = inputImage.value;
+			var image2 = inputImage2.value;	
+
+			var outputText = textOutput.value;
+							
+			if (inputTitle.value && inputTask.value && inputName.value){ //If there was a name and task inputted
+				outputText = outputText + title + ("\n") +
+				"-----------" + ("\n") + " > " + task + " by " + "[" + name + "][" + name + "]" +
+				("\n") + "[" + name + "]: http://oc.tc/" + name +
+				("\n\n"); // Add to text to text
+				}
+
+			if (inputTitle.value && inputTask.value && inputName.value && textArea.value){ //If there was text inputted
+				outputText = outputText  + text + ("\n\n"); // Add to text to text
+				}
+			
+			if (inputTitle.value && inputTask.value && inputName.value && inputImage.value){ //If there was image inputted
+				outputText = outputText + "![" + title + "image1][" + title + "image1]" + ("\n") +
+				" [" + title + "image1]: " + image + ("\n\n"); // Add to image text
+				}
+				
+			if (inputTitle.value && inputTask.value && inputName.value && inputImage2.value){ //If there was a second image inputted
+				outputText = outputText + "![" + title + "image2][" + title + "image2]" + ("\n") +
+				" [" + title + "image2]: " + image2 + ("\n\n"); // Add to image2 text
+				}
+			
+			if (inputTitle.value && inputTask.value && inputName.value && inputCode.value){ //If there was text inputted 
+				
+				var lines = inputCode.value.split("\n") //Split it into an array
+				var newCode = ""; // String buffer
+				for ( var line in lines ){ //For each line
+					var newLine = "    " + lines[line]; //Get the new line and add four spaces infront of it
+					newCode = newCode + newLine + "\r\n"; //Add it to buffer
+				}
+				outputText = outputText + newCode + ("\n\n"); // Add to output text
 			}
 			
 			textOutput.value = outputText;
@@ -100,7 +172,8 @@
 	</script>
 	
   </head>
-  <body style="padding: 25px;">
+  <body>
+	<br>
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
@@ -119,7 +192,7 @@
                     <label for="inputTask" class="col-lg-2 control-label"><span style="color:red">*</span> Task:</label>
                     <div class="col-lg-10">
                       <input type="text" class="form-control" id="inputTask" placeholder="Verb/Description" required="required">
-					  <span class="help-block">eg. Developed, Created, Made, Written, Banned.</span>
+					  <span class="help-block">eg. Developed, Created, Made, Written, Banned.</span> 
                     </div>
                   </div>
 				  
@@ -162,8 +235,9 @@
 
                   <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                      <input type="button" class="btn btn-default" onclick="createOutput()" value="Create"></input>
+                      <input type="button" class="btn btn-default" onclick="createOutput()" value="Create New"></input>
 					  <input type="button" class="btn btn-default" onclick="clearInput()" value="Clear"></input>
+					  <input type="button" class="btn btn-default" onclick="addOutput()" value="Add to Current"></input>
                     </div>
 			      </div>
                 </fieldset>
@@ -189,13 +263,13 @@
                     <button class="btn btn-default" type="button" onclick="select_all(textOutput)">Select All</button>
 					  
                     </span>
-                    <span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by iPGz</p></i></span>
+					<span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by iPGz</p></i></span>
                   </div>
                 </div>
               </form>
 		</div>
     </div>
-
+	
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
