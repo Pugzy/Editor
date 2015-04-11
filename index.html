@@ -7,7 +7,32 @@
 	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
     	
 	  <script type = "text/javascript">
-
+		
+		function wrap(start, end) { 
+			var g = document.getElementById("textOutput");
+			g.focus();
+			if (g.setSelectionRange) {
+				var c = g.scrollTop; 
+				var e = g.selectionStart;
+				var f = g.selectionEnd; 
+				g.value = g.value.substring(0, g.selectionStart) + start + g.value.substring(g.selectionStart, g.selectionEnd) + end + g.value.substring(g.selectionEnd, g.value.length);
+				g.selectionStart = e;
+				g.selectionEnd = f + start.length + end.length; g.scrollTop = c;
+			} else { 
+				if (document.selection && document.selection.createRange) { 
+					g.focus(); 
+					var b = document.selection.createRange();
+					if (b.text != "") {
+						b.text = start + b.text + end; 
+					} else { 
+						b.text = start + "REPLACE" + end; 
+					} 
+					g.focus();
+				}
+			} 
+			
+		}
+		
 		function outputClear(){
 			var textOutput = document.getElementById("textOutput");
 			textOutput.value = ""
