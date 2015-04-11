@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Forum Post Formatter</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
     	
 	  <script type = "text/javascript">
@@ -260,12 +261,16 @@
                 <div class="form-group">
                   <legend>Text Result - Output</legend>
 				  <textarea class="form-control" rows="19" id="textOutput"></textarea>
-				  <button class="btn btn-default" type="button" onclick="wrap('\'', '\'')">Single Quote</button>
                 </div>
 				
 
-
+				<div class="btn-group">
+                  <a href="#" class="btn btn-default" onclick="wrap('\**', '\**')"><i class="fa fa-bold"></i></a>
+                  <a href="#" class="btn btn-default" onclick="wrap('\*', '\*')"><i class="fa fa-italic"></i></a>
+                  <a href="#" class="btn btn-default" onclick="wrap('\`', '\`')"><i class="fa fa-code"></i></a>
+                </div>
                     <span class="group-btn">
+					
                       <button class="btn btn-default" type="button" onclick="outputClear()">Clear</button>
 					  <script type="text/javascript">
 						
@@ -273,7 +278,7 @@
                     <button class="btn btn-default" type="button" onclick="select_all(textOutput)">Select All</button>
 					  
                     </span>
-					<span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by iPGz <small> with small help from Havoc</small></p></i></span>
+					<span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by iPGz <small> with help from Havoc</small></p></i></span>
                   </div>
                 </div>
               </form>
