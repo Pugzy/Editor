@@ -8,22 +8,6 @@
     	
 	  <script type = "text/javascript">
 
-		function mod_selection (val1,val2) {
-			// Get the text area
-			var textArea = document.getElementById('my_text');
-					 
-			// Do we even have a selection?
-			if (typeof(textArea.selectionstart) != "undefined") {
-				// Split the text in three pieces - the selection, and what comes before and after.
-				var begin = textArea.value.substr(0, textArea.selectionstart);
-				var selection = textArea.value.substr(textArea.selectionstart, textArea.selectionend - textArea.selectionstart);
-				var end = textArea.value.substr(textArea.selectionend);
-				 
-				// Insert the tags between the three pieces of text.
-				textArea.value = begin + val1 + selection + val2 + end;
-			}
-		}
-	  
 		function outputClear(){
 			var textOutput = document.getElementById("textOutput");
 			textOutput.value = ""
