@@ -6,7 +6,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
-    	
 	  <script type = "text/javascript">
 		
 		function wrap(start, end) { 
@@ -47,6 +46,7 @@
 			var inputImage = document.getElementById("inputImage");
 			var inputImage2 = document.getElementById("inputImage2");
 			var inputCode = document.getElementById("inputCode");
+			var length = document.getElementById("length");	
 			
 			inputTitle.value = ""
 			inputTask.value = ""
@@ -55,6 +55,7 @@
 			inputImage.value = ""
 			inputImage2.value = ""
 			inputCode.value = ""
+			length.value = ""
 			}
 			
 		function select_all(obj) {
@@ -179,6 +180,12 @@
 			
 			textOutput.value = outputText;
 		}
+		
+		function textCounter(field,cnt) {         
+			var cntfield = document.getElementById(cnt)	
+			cntfield.value = field.value.length;
+		}
+		
 	</script>
 	
   </head>
@@ -217,8 +224,10 @@
 				  <div class="form-group">
                     <label for="textArea" class="col-lg-2 control-label"><span style="color:red">*</span> Text:</label>
                     <div class="col-lg-10">
-                      <textarea class="form-control" rows="3" id="textArea" placeholder="Main text of the article" required="required"></textarea>
-                      <span class="help-block">- Those marked with <span style="color:red">*</span> are required.</span>
+                      <textarea class="form-control" rows="3" id="textArea" placeholder="Main text of the article" required="required" onKeyDown="textCounter(this);"
+						onKeyUp="textCounter(this,'length' ,0)"></textarea>
+                      <span class="help-block">- Those marked with <span style="color:red">*</span> are required.<input style="text-align:right;border:0px;background-color:whitesmoke;color:rgba(115, 115, 115, 0.5);font-size:10pt;font-style:italic;float:right;" readonly type="text" id='length' name="length" size="3" maxlength="3"></span>
+					  
                     </div>
                   </div>
 				  
