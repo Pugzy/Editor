@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mini-Avatar Creator</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
+	  <script type= "text/javascript">
+		
+		// Output Editor
+		
+		function outputClear(){
+			var textOutput = document.getElementById("textOutput");
+			textOutput.value = ""
+			}
+			
+		function select_all(obj) {
+			var text_val=eval(obj);
+			text_val.focus();
+			text_val.select();
+			if (!document.all) return; // IE only
+			r = text_val.createTextRange();
+			r.execCommand('copy');
+			}
+
+		// Avatar Creator
+		
+		function clearInput(){
+			var inputName = document.getElementById('inputName');
+			inputName.value = ""
+			}
+			
+		function addInput(){
+			textOutput = document.getElementById("textOutput");
+			outputText = textOutput.value;
+			inputName = document.getElementById('inputName');
+			
+			outputText = outputText + "<img src=\"https://avatar.oc.tc/" + inputName.value + "/20@2x.png\" alt=\"" + inputName.value + "\" title=\"" + inputName.value + "\" width=\"20\" height=\"20\" class=\"avatar\" style=\"width:20px;height:20px;margin-right:4px;\"> " + inputName.value
+
+			textOutput.value = outputText;
+		}
+
+		
+		function createOutput(){
+			
+			textOutput = document.getElementById("textOutput");
+			outputText = textOutput.value;
+			inputName = document.getElementById('inputName');
+			
+
+				outputText = "<img src=\"https://avatar.oc.tc/" + inputName.value + "/20@2x.png\" alt=\"" + inputName.value + "\" title=\"" + inputName.value + "\" width=\"20\" height=\"20\" class=\"avatar\" style=\"width:20px;height:20px;margin-right:4px;\">"
+
+				textOutput.value = outputText;
+			}
+			
+		
+	</script>
+	
+  </head>
+  <body>
+	<br>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="well bs-component">
+              <form class="form-horizontal">
+                <fieldset>
+                  <legend>Avatar Creator - Input</legend>
+				  <div class="form-group">
+                    <label for="inputName" class="col-lg-2 control-label"><span style="color:red">*</span> Name:</label>
+                    <div class="col-lg-10">
+                      <input type="text" class="form-control" id="inputName" placeholder="Players Username" required="required">
+					  <span class="help-block">- Those marked with <span style="color:red">*</span> are required.<input style="text-align:right;border:0px;background-color:whitesmoke;color:rgba(115, 115, 115, 0.5);font-size:10pt;font-style:italic;float:right;" readonly type="text" id='length' name="length" size="3" maxlength="3"></span>
+					</div>
+                  </div>
+				  
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <input type="button" class="btn btn-default" onclick="createOutput()" value="Create"></input>
+					  <input type="button" class="btn btn-default" onclick="addInput()" value="Add"></input>
+					  <input type="button" class="btn btn-default" onclick="clearInput()" style="margin-left:30px;"value="Clear Input"></input>
+                    </div>
+			      </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+		  <div class="col-lg-6">
+			<div class="well bs-component">
+
+              <form class="bs-component">
+                <div class="form-group">
+                  <legend>Text Result - Output</legend>
+				  <textarea class="form-control" rows="5" id="textOutput"></textarea>
+                </div>
+				
+                    <span class="group-btn">
+					  <button class="btn btn-default" type="button" onclick="select_all(textOutput)">Select All</button>
+                      <button class="btn btn-default" type="button" onclick="outputClear()" style="margin-left:30px;">Clear Output</button>
+ 
+                    </span>
+					<span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by Pugzy</p></i></span>
+                  </div>
+                </div>
+              </form>
+		</div>
+    </div>
+	
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+  </body>
+</html>
