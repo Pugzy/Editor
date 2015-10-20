@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Map URL Converter</title>
+        <script type= "text/javascript">
+            function convert() {
+            
+              var startInput = document.getElementById('mapInput').value;
+              var outputText = document.getElementById('outputText');
+              var outputCopy = document.getElementById('outputCopy');
+            
+              var noSpaces = startInput.replace(" ", "_");
+              var noCaps = noSpaces.toLowerCase();
+              var outputThis = "https://oc.tc/maps/" + noCaps;
+            
+              outputText.innerHTML = outputThis;
+              document.getElementById('outputText').href = outputThis;
+              outputCopy.value = outputText;
+            
+            }
+            	
+            
+        </script>
+    </head>
+    <body>
+        <br>
+        <fieldset>
+            <legend>Map URL Converter</legend>
+            <input type="text" id="mapInput" />
+            <input type="submit" value="Convert" onclick="convert()" />
+            <br>
+            <br>
+            <input type="text" id="outputCopy" /> <a id="outputText" href="#"></a>
+        </fieldset>
+    </body>
+</html>
