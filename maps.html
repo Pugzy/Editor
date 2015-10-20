@@ -10,7 +10,7 @@
               var outputText = document.getElementById('outputText');
               var outputCopy = document.getElementById('outputCopy');
             
-              var noSpaces = startInput.replace(" ", "_");
+              var noSpaces = startInput.replace(/ /g, "_");
               var noCaps = noSpaces.toLowerCase();
               var outputThis = "https://oc.tc/maps/" + noCaps;
             
