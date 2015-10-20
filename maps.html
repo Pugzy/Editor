@@ -3,35 +3,115 @@
     <head>
         <meta charset="utf-8">
         <title>Map URL Converter</title>
-        <script type= "text/javascript">
+        <script type="text/javascript">
             function convert() {
-            
-              var startInput = document.getElementById('mapInput').value;
-              var outputText = document.getElementById('outputText');
-              var outputCopy = document.getElementById('outputCopy');
-            
-              var noSpaces = startInput.replace(/ /g, "_");
-              var noCaps = noSpaces.toLowerCase();
-              var outputThis = "https://oc.tc/maps/" + noCaps;
-            
-              outputText.innerHTML = outputThis;
-              document.getElementById('outputText').href = outputThis;
-              outputCopy.value = outputText;
-            
+
+                var startInput = document.getElementById('mapInput').value;
+                var outputText = document.getElementById('outputText');
+                var outputCopy = document.getElementById('outputCopy');
+                var outputMarkdown = document.getElementById('outputMarkdown');
+                var outputHref = document.getElementById('outputHref');
+                var outputGitHub = document.getElementById('outputGitHub');
+                var outputRepo = document.getElementById('outputRepo');
+                var outputGoogle = document.getElementById('outputGoogle');
+
+                var noSpaces = startInput.replace(/ /g, "_");
+                var noCaps = noSpaces.toLowerCase();
+                var outputThis = "https://oc.tc/maps/" + noCaps;
+
+                outputText.innerHTML = outputThis;
+                document.getElementById('outputText').href = outputThis;
+
+                outputCopy.value = outputText;
+                outputMarkdown.value = "[" + startInput + "](" + outputThis + "]";
+                outputHref.value = "<a href=\"" + outputThis + "\">" + startInput + "</a>";
+
+                var searchOutput = startInput.replace(/ /g, "+");
+
+                outputGitHub.innerHTML = "https://github.com/OvercastNetwork/Maps/search?&q=" + searchOutput;
+                document.getElementById('outputGitHub').href = "https://github.com/OvercastNetwork/Maps/search?&q=" + searchOutput;
+
+                outputRepo.innerHTML = "https://github.com/OvercastNetwork/Rotations/search?&q=" + searchOutput;
+                document.getElementById('outputRepo').href = "https://github.com/OvercastNetwork/Rotations/search?&q=" + searchOutput;
+
+                outputGoogle.innerHTML = "https://www.google.com/#q=site:oc.tc+" + searchOutput;
+                document.getElementById('outputGoogle').href = "https://www.google.com/#q=site:oc.tc+" + searchOutput;
+
+                ///
+
             }
-            	
-            
         </script>
+        <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAJ6TrAFy+8QCC0vgA7+/vAC6n7ACE0/gAS2RuAKbU5QDAwMAAv+3+ACek6gApoeYAAAAAAAAAAAAAAAAARERERERERABEREREREREAEREREREREQAREREeIRERABJmZSohUREAERERKolVEQAREREozUVRABJmZRDNlFUAEREREQzZRUAREREREM2W1BJmZmZRDNlxUREREREQzZVREREREREMzVJmZmZmURDM0REREREREQzRERERERERAMAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA" rel="icon" type="image/x-icon" />
+        <style type="text/css">
+            #outputText, #outputGitHub, #outputRepo, #outputGoogle {
+                -webkit-appearance: textfield;
+                padding: 1px;
+                border: 2px inset;
+                margin: 0em;
+                font: 13.3333px Arial;
+                display: inline-block;
+                width: 167px;
+                height: 16px;
+                float: right;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            .label {
+                text-align:right;
+            }
+            body {
+                float:left;
+            }
+
+            legend {
+              margin-bottom: 5px;
+            }
+
+            a:visited {
+              color: #0000EE;
+            }
+
+        </style>
     </head>
+    
     <body>
-        <br>
         <fieldset>
             <legend>Map URL Converter</legend>
-            <input type="text" id="mapInput" />
-            <input type="submit" value="Convert" onclick="convert()" />
+            <label>Name: </label>
+            <input type="text" id="mapInput" style="float:right;" />
             <br>
             <br>
-            <input type="text" id="outputCopy" /> <a id="outputText" href="#"></a>
+            <input type="submit" value="Convert" onclick="convert()" style="width:70%;" />
+            <input type="submit" value="Refresh" onclick="location.reload();" style="width:25%;float:right;" />
+            <br>
+            <br>
+            <label>OCN Link: </label>
+            <input type="text" id="outputCopy" style="float:right;" />
+            <br>
+            <br>
+            <label>Direct Link: </label><a id="outputText" href="#"></a>
+            <br>
+            <br>
+            <label>Markdown:</label>
+            <input type="text" id="outputMarkdown" style="float:right;" />
+            <br>
+            <br>
+            <label>Href: </label>
+            <input type="text" id="outputHref" style="float:right;" />
+            <br>
+            <br>
+            <label>GitHub: </label><a id="outputGitHub" href="#"></a>
+            <br>
+            <br>
+            <label>Rotation: </label><a id="outputRepo" href="#"></a>
+            <br>
+            <br>
+            <label>Google: </label><a id="outputGoogle" href="#"></a>
+            <br>
+            <br> <span style="float: right;padding-right: 10px;color: silver;font-size: 12px;"><i><p>Created by Pugzy</p></i></span>
+
         </fieldset>
     </body>
+
 </html>
