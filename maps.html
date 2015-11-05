@@ -15,7 +15,7 @@
                 var outputRepo = document.getElementById('outputRepo');
                 var outputGoogle = document.getElementById('outputGoogle');
 
-                var noSpaces = startInput.replace(/ /g, "_");
+                var noSpaces = startInput.replace(/ /g, "_").replace(/:/g, "").replace(/'/g, "_").replace(/!/g, "_");
                 var noCaps = noSpaces.toLowerCase();
                 var outputThis = "https://oc.tc/maps/" + noCaps;
 
@@ -23,7 +23,7 @@
                 document.getElementById('outputText').href = outputThis;
 
                 outputCopy.value = outputText;
-                outputMarkdown.value = "[" + startInput + "](" + outputThis + "]";
+                outputMarkdown.value = "[" + startInput + "](" + outputThis + ")";
                 outputHref.value = "<a href=\"" + outputThis + "\">" + startInput + "</a>";
 
                 var searchOutput = startInput.replace(/ /g, "+");
